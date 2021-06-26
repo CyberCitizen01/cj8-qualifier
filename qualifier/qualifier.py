@@ -1,3 +1,4 @@
+#!/bin/env python3.9
 from typing import Any, List, Optional
 
 
@@ -10,3 +11,9 @@ def make_table(rows: List[List[Any]], labels: Optional[List[Any]] = None, center
     :return: A table representing the rows passed in.
     """
     ...
+    def width_of_column(n:int):
+        from operator import itemgetter
+        if labels is not None:
+            rows.insert(0,labels)
+        column = list( map( itemgetter(n), rows ) )
+        return len(max(column, key=len))
